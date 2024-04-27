@@ -150,6 +150,40 @@ class Filtros {
     return out;
   }
   
+  PImage PassaBaixaRGB(PImage img, int r, int g, int b){
+    PImage out = img;
+    
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
+        int pos = y * img.width + x;
+  
+        if(red(img.pixels[pos]) < r &&
+           green(img.pixels[pos]) < g &&
+           blue(img.pixels[pos]) < b){
+          out.pixels[pos] = color(255);
+        }
+      }
+    }
+    return out;
+  }
+  
+  PImage PassaAltaRGB(PImage img, int r, int g, int b){
+    PImage out = img;
+    
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
+        int pos = y * img.width + x;
+  
+        if(red(img.pixels[pos]) > r &&
+           green(img.pixels[pos]) > g &&
+           blue(img.pixels[pos]) > b){
+          out.pixels[pos] = color(0);
+        }
+      }
+    }
+    return out;
+  }
+  
   PImage Box(PImage img, int x1, int y1, int x2, int y2){
     PImage out = createImage(img.width, img.height, RGB);
   
@@ -161,6 +195,24 @@ class Filtros {
         
         if (valor == 255 && x >= x1 && x <= x2 && y >= y1 && y <= y2) valor = 255;
         else valor = 0;
+        
+        out.pixels[pos] = color(valor);
+      }
+    }
+    
+    return out;
+  }
+  
+  PImage BoxInterno(PImage img, int x1, int y1, int x2, int y2){
+    PImage out = createImage(img.width, img.height, RGB);
+  
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
+        int pos = y * img.width + x;
+        
+        int valor = int(red(img.pixels[pos]));
+        
+        if (x <= x1 || x >= x2 || y <= y1 || y >= y2) valor = 255;
         
         out.pixels[pos] = color(valor);
       }
