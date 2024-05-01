@@ -135,6 +135,27 @@ class Filtros {
     }
     return out;
   }
+
+  PImage BrilhoAlturaY(PImage img, int limiar, int alturay){
+    PImage out = createImage(img.width, img.height, RGB);
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
+        int pos = y*img.width + x;
+        // Verifica se Y é maior ou igual a 100
+        if (y >= alturay) {
+          int valor = (int)blue(img.pixels[pos]);
+          valor += limiar;
+          valor = constrain(valor, 0, 255); // Limita o valor entre 0 e 255
+          out.pixels[pos] = color(valor); // Usa valor direto, pois já está no intervalo correto
+        }
+        else{
+          out.pixels[pos] = color((int)blue(img.pixels[pos]));
+          
+          }
+      }
+    }
+    return out;
+  }
   
   PImage Contraste(PImage img, float limiar){
     PImage out = createImage(img.width, img.height, RGB);
