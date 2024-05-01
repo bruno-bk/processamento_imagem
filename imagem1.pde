@@ -18,8 +18,7 @@ void processar_imagem1() {
 
   out1 = filt.Limiarizacao(out1, 200, false);
   out1 = filt.Box(out1, 65, 120, 260, 300);
-  image(out1, 0 ,0);
-  save("imagens/img1_parte1.png");
+  out1.save("imagens/img1_parte1.png");
   
   PImage out2 = createImage(img.width, img.height, RGB);
   out2 = filt.EscalaCinzaB(img);
@@ -33,13 +32,12 @@ void processar_imagem1() {
 
   out2 = filt.Limiarizacao(out2, 130, true);
   out2 = filt.Box(out2, 120, 115, 220, 230);
-  image(out2, 0 ,0);
-  save("imagens/img1_parte2.png");
+  out2.save("imagens/img1_parte2.png");
   
   out = filt.Soma(out1, out2);
+  out.save("imagens/img1_soma.png");
   out = filt.Limiarizacao(out, 10, false);
-  image(out, 0 ,0);
-  save("imagens/img1_gt_gerada.png");
+  out.save("imagens/img1_gt_gerada.png");
    
   PImage img_ori = loadImage("imagens/img1_gt_original.png");
   println("O total de igualdade da imagem 1 é =", filt.Comparador(out, img_ori),"%");
