@@ -5,7 +5,7 @@ void processar_imagem2(){
   
   PImage out1 = createImage(img.width, img.height, RGB);
   out1 = filt.PassaBaixaRGB(img, 50, 50, 50);
-  out1 = filt.EscalaCinzaB(img);
+  out1 = filt.EscalaCinzaB(out1);
   
   out1 = filt.Brilho(out1, 30);
   out1 = filt.Contraste(out1, 1.8);
@@ -41,4 +41,7 @@ void processar_imagem2(){
 
   PImage img_ori = loadImage("imagens/img2_gt_original.png");
   println("O total de igualdade da imagem 2 é =", filt.Comparador(out, img_ori),"%");
+
+  out = filt.CutGT(img, out);
+  out.save("imagens/img2_recortada.png");
 }

@@ -41,4 +41,7 @@ void processar_imagem1() {
    
   PImage img_ori = loadImage("imagens/img1_gt_original.png");
   println("O total de igualdade da imagem 1 é =", filt.Comparador(out, img_ori),"%");
+  
+  out = filt.CutGT(img, out);
+  out.save("imagens/img1_recortada.png");
 }

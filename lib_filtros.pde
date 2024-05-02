@@ -172,7 +172,7 @@ class Filtros {
   }
   
   PImage PassaBaixaRGB(PImage img, int r, int g, int b){
-    PImage out = img;
+    PImage out = createImage(img.width, img.height, RGB);
     
     for (int y = 0; y < img.height; y++) {
       for (int x = 0; x < img.width; x++) {
@@ -182,6 +182,8 @@ class Filtros {
            green(img.pixels[pos]) < g &&
            blue(img.pixels[pos]) < b){
           out.pixels[pos] = color(255);
+        } else {
+          out.pixels[pos] = color(red(img.pixels[pos]), green(img.pixels[pos]), blue(img.pixels[pos]));
         }
       }
     }
@@ -189,7 +191,7 @@ class Filtros {
   }
   
   PImage PassaAltaRGB(PImage img, int r, int g, int b){
-    PImage out = img;
+    PImage out = createImage(img.width, img.height, RGB);
     
     for (int y = 0; y < img.height; y++) {
       for (int x = 0; x < img.width; x++) {
@@ -199,6 +201,8 @@ class Filtros {
            green(img.pixels[pos]) > g &&
            blue(img.pixels[pos]) > b){
           out.pixels[pos] = color(0);
+        } else {
+          out.pixels[pos] = color(red(img.pixels[pos]), green(img.pixels[pos]), blue(img.pixels[pos]));
         }
       }
     }
@@ -315,4 +319,22 @@ class Filtros {
     }
     return (((float)total/(img1.height*img1.width))*100);
   }
+  
+  PImage CutGT(PImage img, PImage gt){
+    PImage out = createImage(img.width, img.height, RGB);
+  
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
+        int pos = y * img.width + x;
+        
+        if (red(gt.pixels[pos]) > 100) {
+          out.pixels[pos] = color(red(img.pixels[pos]), green(img.pixels[pos]), blue(img.pixels[pos]));
+        } else {
+          out.pixels[pos] = color(0);
+        }
+      }
+    }
+    return out;
+  }
+  
 }
