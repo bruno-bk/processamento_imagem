@@ -5,8 +5,7 @@ void processar_imagem1() {
   
   PImage out1 = createImage(img.width, img.height, RGB);
   out1 = filt.EscalaCinzaR(img);
-  
-  out1 = filt.Brilho(out1, 20);
+
   out1 = filt.Contraste(out1, 1.5);
   
   float[][] k = {{1.0/9,1.0/9,1.0/9},

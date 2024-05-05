@@ -11,12 +11,8 @@ void draw() {
   }
   
   processar_imagem1();
-  image(img, 0 ,0);
   processar_imagem2();
-  image(img, 0 ,0);
   processar_imagem3();
-  image(img, 0 ,0);
   processar_imagem4();
-  image(img, 0 ,0);
   processar_imagem5();
 }
