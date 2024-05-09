@@ -23,7 +23,9 @@ void processar_imagem3(){
   out.save("imagens/img3_gt_gerada.png");
 
   PImage img_ori = loadImage("imagens/img3_gt_original.png");
-  println("O total de igualdade da imagem 3 é =", filt.Comparador(out, img_ori),"%");
+  println("O total de igualdade da imagem 3 é =", filt.Comparador(out, img_ori),
+  "% \t falso negativos = ", filt.ComparadorFN(out, img_ori),
+  "% \t falso positivos = ", filt.ComparadorFP(out, img_ori),"%");
   
   out = filt.CutGT(img, out);
   out.save("imagens/img3_recortada.png");

@@ -317,6 +317,40 @@ class Filtros {
         }
       }
     }
+    
+    return (((float)total/(img1.height*img1.width))*100);
+  }
+  
+  float ComparadorFP(PImage img1, PImage img2){
+    int total = 0;
+  
+    for (int y = 0; y < img1.height; y++) {
+      for (int x = 0; x < img1.width; x++) {
+        int pos = y * img1.width + x;
+
+        if (red(img1.pixels[pos]) > 127 && red(img2.pixels[pos]) < 127){
+          total += 1;
+        }
+      }
+    }
+
+    return (((float)total/(img1.height*img1.width))*100);
+  }
+  
+  float ComparadorFN(PImage img1, PImage img2){
+    int total = 0;
+  
+    for (int y = 0; y < img1.height; y++) {
+      for (int x = 0; x < img1.width; x++) {
+        int pos = y * img1.width + x;
+        
+        if (red(img1.pixels[pos]) < 127 && red(img2.pixels[pos]) > 127){
+          total += 1;
+        }
+
+      }
+    }
+
     return (((float)total/(img1.height*img1.width))*100);
   }
   
